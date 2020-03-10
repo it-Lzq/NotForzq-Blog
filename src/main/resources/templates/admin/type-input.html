@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="admin/user_fragment :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>NotForzq 分类新增</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet">
+    <link href="../../static/lib/editormd/css/editormd.css" rel="stylesheet">
+    <link href="../../static/css/index.css" rel="stylesheet">
+    <canvas height="990" id="c_n9" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;" width="1920"></canvas>
+    <script defer src="https://files.cnblogs.com/files/jeavy/canvas-nest.min.js"></script>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav class="ui inverted segment attached my-padding-tb" th:replace="admin/user_fragment :: menu">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">Blog 控制台</h2>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="../index.html">💎首页</a>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="../blogClass.html">🎉分类</a>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="../blogTag.html">👣标签</a>
+                <div class="right menu">
+                    <div class="ui dropdown item  my-mobile-hide c-item ">
+                        <div class="text">
+                            <img alt="" class="ui avatar image " src="../../static/img/mytx.jpg"> 李泽庆
+                        </div>
+                        <i class="icon dropdown"></i>
+                        <div class="menu">
+                            <a class="item" href="">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 汉堡 -->
+        <span class="ui black button my-hanbao my-mobile-show" href="#" id="toggle-menu"><span class="" style="font-size: 30px;">🍔</span></span>
+    </nav>
+    <div class="ui attached menu pointing">
+        <div class=" ui  container">
+            <div class="right menu " >
+                <a class="item " href="blogManager.html"  th:href="@{/admin/blogs}">列表</a>
+                <a class="item  " href="blogRelease.html" th:href="@{/admin/blogRelease}">发布</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- 中间内容 -->
+    <div class="my-container centered">
+        <div class="ui container">
+            <div class="ui  stackable">
+                <form action="#" class="ui form segment basic" method="post" th:action="*{id}==null ?@{/admin/types} : @{/admin/types/{id}(id=*{id})}"  th:object="${type}">
+
+                    <input name="id" th:value="*{id}" type="hidden">
+                    <!-- 图片引用地址 -->
+                    <div class="field ">
+                        <div class="ui left labeled input">
+                            <label  class="ui green basic label">类别名称</label>
+                            <input name="name" placeholder="请输入新增类名" th:value="*{name}" type="text">
+                        </div>
+                    </div>
+                    <!-- 推荐 -->
+                    <div class="ui error message ">请输入</div>
+                    <!--/*/
+                    <div class="ui negative mini message" th:if="${#fields.hasErrors('name')}" >
+                        <i class="close icon"></i>
+                        <p th:errors="*{name}" class="header">提交信息不符合规范</p>
+                    </div>
+                    /*/-->
+                    <br><br>
+
+                    <br><br>
+                    <!-- 按钮 -->
+                    <div class="ui right aligned container">
+                        <button class="ui orange button" onclick="window.history.go(-1)" type="button">返回</button>
+                        <button class="ui teal button" type="submit">提交</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <!-- 底部 -->
+    <footer class="ui inverted vertical segment my-padding-shuxian my-margin-top-small " th:replace="admin/user_fragment :: footer">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided grid stackable">
+                <div class="four wide  column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img class="ui rounded image" src="../../static/img/wx.jpg" style="height: 110px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a class="item" href="">学习资讯(study info)</a>
+                        <a class="item" href="">关于如何高效学习</a>
+                        <a class="item" href="">保持本心</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">联系我</h4>
+                    <div class="ui inverted link list">
+                        <span class="item" href="">phone:15034344690</span>
+                        <span class="item" href="">QQ:905866484</span>
+                        <span class="item" href="">email:905866484@qq.com</span>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">NotForzq</h4>
+                    <div class="ui inverted link list">
+                        <span class="item">------------------------</span>
+                        <span class="item" href="#"> 学习不仅仅是为了自己！前方不会孤单！</span>
+                        <span class="item">------------------------</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="item my-opacity-font">Welcome to notonlyzq blog, since 2020</p>
+        </div>
+
+    </footer>
+    <script src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+    <script>
+        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+        $("#toggle-menu").click(function() {
+            $('.c-item').toggleClass('my-mobile-hide');
+        });
+        $('.ui.dropdown')
+            .dropdown({
+                on: 'hover'
+            });
+        $('.ui.form').form({
+                fields: {
+                    name: {
+                        indentifier: 'name',
+                        rules: [{
+                            type: 'empty',
+                            prompt: '分类名称不能为空'
+                        }]
+                    }
+                }
+            })
+
+
+
+    </script>
+</body>
+
+</html>

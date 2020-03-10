@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h2 th:text="'错误请求路径:'+${url}"></h2>
+<br>
+    <h3 th:utext="'异常信息：'+${exception}"></h3>
+    <p th:each="st : ${exception.stackTrace}">
+        <span th:utext="${st}"></span>
+    </p>
+</body>
+</html>

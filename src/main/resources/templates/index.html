@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="blog_fragment :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>NotForzq Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet">
+    <link href="../static/css/index.css" rel="stylesheet">
+    <canvas height="990" id="c_n9" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;" width="1920"></canvas>
+    <script defer src="https://files.cnblogs.com/files/jeavy/canvas-nest.min.js"></script>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav class="ui inverted segment attached my-padding-tb"  th:replace="blog_fragment :: menu">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">NotForzq Blog</h2>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="index.html">💎首页</a>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="blogClass.html">🎉分类</a>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="blogTag.html">👣标签</a>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="blogHome.html">🎐归档</a>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="blogMy.html">🤪关于我</a>
+                <div class="right c-item item my-mobile-hide ">
+                    <div class="ui icon input">
+                        <input placeholder="Search" type=" text">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 汉堡 -->
+        <span class="ui black button my-hanbao my-mobile-show" href="#" id="toggle-menu"><span class="" style="font-size: 30px;">🍔</span></span>
+    </nav>
+    <br>
+    <br>
+
+    <!-- 中间内容 -->
+    <div class="">
+        <div class="ui container">
+            <div class="ui grid stackable">
+                <!-- 内容left -->
+                <div class="eleven wide column">
+                    <!-- 小标题 -->
+                    <div class="ui segment">
+                        <div class="ui middle aligned two column grid">
+                            <div class="column">
+                                <h3 class="ui teal header" style="font-size: 24px;">博客</h3>
+                            </div>
+                            <div class="column right aligned">
+                                共
+                                <h2 class="ui orange header my-inline-block" th:text="${page.totalElements}"> 14</h2> 篇文章
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 内容 -->
+                    <div class="ui attached  " style="background-color: ghostwhite;">
+                        <div class="ui segment" th:each="blog :${page.content}">
+                            <div class="ui grid stackable mobile reversed ">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a href="blog.html"  style="font-size: 1.2em" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}"> Java中的List你真的会用吗？</a></h3>
+                                    <p style="color: lightslategray;font-size: 1.1em" th:text="${blog.description}">List是Java中比较常用的集合类，关于List接口有很多实现类，本文就来简单介绍下其中几个重点的实现ArrayList、LinkedList和Vector之间的关系和区别。</p>
+                                    <div class="ui grid ">
+                                        <div class="eleven wide column ">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img alt="" class="ui avatar image " src="../static/img/mytx.jpg" th:src="@{${blog.user.avatar}}">
+                                                    <div class="content" th:text="${blog.user.nickname}"><span href="#">李泽庆</span></div>
+                                                </div>
+                                                <br>
+                                                <div class="item" style="margin-left: 2.6em !important;">
+                                                    ⏱<span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2019-10-01</span>
+                                                </div>
+                                                <div class="item" >👁
+                                                    <span th:text="${blog.views}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aliened five wide column ">
+                                            <a class="ui label teal basic my-opacity-font my-font-small" href="blog.html" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.type.name}">加深认知</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column ">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}">
+                                        <img alt="" class="ui  rounded image"  src="../static/img/list.jpg" th:src="@{${blog.img}}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/*-->
+                        <div class="ui segment">
+                            <div class="ui grid stackable mobile reversed">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a href="blog.html"> String 使用不当可能导致内存泄露</a></h3>
+                                    <p style="color: lightslategray;">String是Java中一个比较基础的类，每一个开发人员都会经常接触到。而且，String也是面试中经常会考的知识点。String有很多方法，有些方法比较常用，有些方法不太常用。</p>
+                                    <div class="ui grid ">
+                                        <div class="twelve wide column ">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img alt="" class="ui avatar image " src="../static/img/mytx.jpg">
+                                                    <div class="content"><span href="#">李泽庆</span></div>
+                                                </div>
+                                                <div class="item">&nbsp;⏱2019-10-01</div>
+                                                <div class="item">&nbsp;👁999</div>
+                                            </div>
+                                        </div>
+                                        <div class="right aliened four wide column ">
+                                            <a class="ui label teal basic my-opacity-font my-font-small" href="blog.html" target="_blank">加深认知</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a href="#">
+                                        <img alt="" class="ui rounded image" src="../static/img/string.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui segment">
+                            <div class="ui grid stackable mobile reversed ">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a href="blog.html"> Java中的List你真的会用吗？</a></h3>
+                                    <p style="color: lightslategray;">List是Java中比较常用的集合类，关于List接口有很多实现类，本文就来简单介绍下其中几个重点的实现ArrayList、LinkedList和Vector之间的关系和区别。</p>
+                                    <div class="ui grid ">
+                                        <div class="twelve wide column ">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img alt="" class="ui avatar image " src="../static/img/mytx.jpg">
+                                                    <div class="content"><span href="#">李泽庆</span></div>
+                                                </div>
+                                                <div class="item">⏱2019-10-01</div>
+                                                <div class="item">👁999</div>
+                                            </div>
+                                        </div>
+                                        <div class="right aliened four wide column ">
+                                            <a class="ui label teal basic my-opacity-font my-font-small" href="blog.html" target="_blank">加深认知</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column ">
+                                    <a href="#">
+                                        <img alt="" class="ui  rounded image" src="../static/img/list.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui segment">
+                            <div class="ui grid stackable mobile reversed">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a href="blog.html"> String 使用不当可能导致内存泄露</a></h3>
+                                    <p style="color: lightslategray;">String是Java中一个比较基础的类，每一个开发人员都会经常接触到。而且，String也是面试中经常会考的知识点。String有很多方法，有些方法比较常用，有些方法不太常用。</p>
+                                    <div class="ui grid ">
+                                        <div class="twelve wide column ">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img alt="" class="ui avatar image " src="../static/img/mytx.jpg">
+                                                    <div class="content"><span href="#">李泽庆</span></div>
+                                                </div>
+                                                <div class="item">&nbsp;⏱2017-10-01</div>
+                                                <div class="item">&nbsp;👁999</div>
+                                            </div>
+                                        </div>
+                                        <div class="right aliened four wide column ">
+                                            <a class="ui label teal basic my-opacity-font my-font-small" href="#" target="_blank">加深认知</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a href="#">
+                                        <img alt="" class="ui rounded image" src="../static/img/string.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui segment">
+                            <div class="ui grid stackable mobile reversed ">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a href="blog.html"> Java中的List你真的会用吗？</a></h3>
+                                    <p style="color: lightslategray;">List是Java中比较常用的集合类，关于List接口有很多实现类，本文就来简单介绍下其中几个重点的实现ArrayList、LinkedList和Vector之间的关系和区别。</p>
+                                    <div class="ui grid ">
+                                        <div class="twelve wide column ">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img alt="" class="ui avatar image " src="../static/img/mytx.jpg">
+                                                    <div class="content"><span href="#">李泽庆</span></div>
+                                                </div>
+                                                <div class="item">⏱2019-10-01</div>
+                                                <div class="item">👁999</div>
+                                            </div>
+                                        </div>
+                                        <div class="right aliened four wide column ">
+                                            <a class="ui label teal basic my-opacity-font my-font-small" href="blog.html" target="_blank">加深认知</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column ">
+                                    <a href="#">
+                                        <img alt="" class="ui  rounded image" src="../static/img/list.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui segment">
+                            <div class="ui grid stackable mobile reversed">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a href="blog.html"> String 使用不当可能导致内存泄露</a></h3>
+                                    <p style="color: lightslategray;">String是Java中一个比较基础的类，每一个开发人员都会经常接触到。而且，String也是面试中经常会考的知识点。String有很多方法，有些方法比较常用，有些方法不太常用。</p>
+                                    <div class="ui grid ">
+                                        <div class="twelve wide column ">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img alt="" class="ui avatar image " src="../static/img/mytx.jpg">
+                                                    <div class="content"><span href="#">李泽庆</span></div>
+                                                </div>
+                                                <div class="item">&nbsp;⏱2019-10-01</div>
+                                                <div class="item">&nbsp;👁999</div>
+                                            </div>
+                                        </div>
+                                        <div class="right aliened four wide column ">
+                                            <a class="ui label teal basic my-opacity-font my-font-small" href="blog.html" target="_blank">加深认知</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a href="#">
+                                        <img alt="" class="ui rounded image" src="../static/img/string.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+<!--*/-->
+                    </div>
+                    <!-- 文章底部 -->
+                    <div class="ui  segment " th:if="${page.totalPages}>1">
+                        <div class="ui middle aligned two column grid">
+                            <div class="column left aligned">
+                                <a class="ui mini  button primary"  href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                            </div>
+                            <div class="column right aligned">
+                                <a class="ui mini  button primary" href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 内容right -->
+                <div class="five wide column">
+                    <!-- 分类 -->
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column" style="font-size: 20px;">🎉分类</div>
+                                <div class="right aligned column"><a href="blogClass.html" th:href="@{/type/-1}">more📖</a></div>
+                            </div>
+                        </div>
+                        <div class="ui segment yellow">
+                            <div class="ui vertical menu fluid" >
+                                <a class="item" href="blogClass.html" th:each="type : ${types}" th:href="@{/type/{id}(id=${type.id})}"><span th:text="${type.name}">学习日志</span>
+                                       <div class="ui label yellow left pointing  basic  " ><span th:text="${#arrays.length(type.blogs)}">16</span></div>
+                                </a>
+<!--/*-->
+                                <a class="item" href="blogClass.html">疑难纠错
+                                    <div class="ui label yellow left pointing  basic ">30</div>
+                                </a>
+                                <a class="item" href="blogClass.html">自我感悟
+                                <div class="ui label yellow left pointing  basic ">10</div>
+                                </a>
+                                <a class="item" href="blogClass.html">丰富生活
+                                    <div class="ui label yellow left pointing basic ">5</div>
+                                </a>
+                                <a class="item" href="blogClass.html">业余美食
+                                    <div class="ui label yellow left pointing  basic ">52</div>
+                                </a>
+<!--*/-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 标签 -->
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column" style="font-size: 20px;">👣标签</div>
+                                <div class="right aligned column"><a href="blogTag.html" th:href="@{/tag}">more📖</a></div>
+                            </div>
+                        </div>
+                        <div class="ui segment red" >
+                            <a class="ui red label left pointing my-margin-top-ssmall" href="blogTag.html" th:each="tag : ${tags}" th:href="@{/tag/{id}(id=${tag.id})}">
+                                <span th:text="${tag.name}">jdk安装</span>
+                                <div class="detail" th:text="${#arrays.length(tag.blogs)}">13</div>
+                            </a>
+
+                            <!--/*-->
+                            <a class="ui red label left pointing my-margin-top-ssmall" href="blogTag.html">io流 <div class="detail">14</div></a>
+                            <a class="ui red label left pointing my-margin-top-ssmall" href="blogTag.html">tomcat <div class="detail">13</div></a>
+                            <a class="ui red label left pointing my-margin-top-ssmall" href="blogTag.html">三层架构 <div class="detail">17</div></a>
+                            <a class="ui red label left pointing my-margin-top-ssmall" href="blogTag.html">方法论 <div class="detail">21</div></a>
+                            <a class="ui red label left pointing my-margin-top-ssmall" href="blogTag.html">jsp原理解析 <div class="detail">33</div></a>
+                            <a class="ui red label left pointing my-margin-top-ssmall" href="blogTag.html">文件上传与下载 <div class="detail">43</div></a>
+                            <a class="ui red label left pointing my-margin-top-ssmall" href="blogTag.html">spring初识 <div class="detail">13</div></a>
+                            <!--*/-->
+                        </div>
+                    </div>
+                    <!-- 最新推荐 -->
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column" style="font-size: 20px;">🎈最新推荐</div>
+                                <div class="right aligned column"><a href="#">🌷📖🌷</a></div>
+                            </div>
+                        </div>
+                        <div class="ui segment green">
+                            <div class="ui vertical menu fluid " style="font-family: '幼圆';font-size: 15px;">
+                                <a class="item" href="blogHome.html" th:each="reblog : ${recommendBlogs}"  th:href="@{/blog/{id}(id=${reblog.id})}">
+                                    <span th:text="${reblog.title}">学习日志...</span>
+                                </a>
+
+                                <!--/*-->
+                                <a class="item" href="blogHome.html">疑难纠错... </a>
+                                <a class="item" href="blogHome.html">自我感悟... </a>
+                                <a class="item" href="blogHome.html">丰富生活... </a>
+                                <a class="item" href="blogHome.html">业余美食... </a>
+                                <!--*/-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 二维码 -->
+                    <div class="ui horizontal divider ">喜欢我的请响铃$😁</div>
+                    <div class="ui card centered " style="width:160px">
+                        <img alt="" class="ui round image" src="../static/img/wxsk.jpg" th:src="@{/img/wxsk.jpg}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <footer class="ui inverted vertical segment my-padding-shuxian my-margin-top-small "  th:replace="blog_fragment :: footer">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided grid stackable">
+                <div class="four wide  column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img class="ui rounded image" src="../static/img/wx.jpg" style="height: 110px;" th:src="@{/img/wx.jpg}">
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a class="item" href="">学习资讯(study info)</a>
+                        <a class="item" href="">关于如何高效学习</a>
+                        <a class="item" href="">保持本心</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">联系我</h4>
+                    <div class="ui inverted link list">
+                        <span class="item" href="">phone:15034344690</span>
+                        <span class="item" href="">QQ:905866484</span>
+                        <span class="item" href="">email:905866484@qq.com</span>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">NotForzq</h4>
+                    <div class="ui inverted link list">
+                        <span class="item">------------------------</span>
+                        <span class="item" href="#"> 学习不仅仅是为了自己！前方不会孤单！</span>
+                        <span class="item">------------------------</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="item my-opacity-font">Welcome to notonlyzq blog, since 2020</p>
+        </div>
+
+    </footer>
+    <script src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script>
+
+        $("#toggle-menu").click(function() {
+            $('.c-item').toggleClass('my-mobile-hide');
+        });
+        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+    </script>
+</body>
+
+</html>

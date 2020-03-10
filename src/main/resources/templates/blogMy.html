@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="blog_fragment :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>NotForzq 关于我</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet">
+    <link href="../static/css/index.css" rel="stylesheet">
+    <canvas height="990" id="c_n9" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;" width="1920"></canvas>
+    <script defer src="https://files.cnblogs.com/files/jeavy/canvas-nest.min.js"></script>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav class="ui inverted segment attached my-padding-tb">
+        <div class="ui container ">
+            <div class="ui inverted secondary stackable menu  ">
+                <div>
+                    <h2 class="ui teal header item">NotForzq Blog</h2>
+                </div>
+                <div class="ui dropdown item my-mobile-hide c-item "><a class="  my-font-bigsmall" href="index.html" th:href="@{/}">💎Blog首页</a></div>
+                <div class="ui dropdown item my-mobile-hide  c-item">
+                    <div class="text  my-font-bigsmall">
+                        🎉学习笔记
+                    </div>
+                    <div class="menu ">
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="https://www.sxt.cn/Java_jQuery_in_action/History_Direction.html"> Java SE</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="https://www.bilibili.com/video/av49181542"> MySql</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="#"> Java EE</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="#"> SSM</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="#"> Linux</a>
+                    </div>
+                </div>
+                <div class="ui dropdown item my-mobile-hide c-item">
+                    <div class="text  my-font-bigsmall">
+                        👣工具下载
+                    </div>
+                    <div class="menu">
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="https://www.oracle.com/java/technologies/javase-downloads.html#JDK8" th:href="@{jdk-8u131-windows-x64.exe}">JDK 1.8</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-5.6.47.0.msi">MySql 5.6</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="DISK1.zip" th:href="@{DISK1.zip}">oracle11g</a>
+                    </div>
+                </div>
+                <div class="ui dropdown item  my-mobile-hide c-item">
+                    <div class="text  my-font-bigsmall">
+                        🤑四个儿子
+                    </div>
+                    <div class="menu">
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="../static/img/xek.jpg" th:href="@{/img/xek.jpg}">薛二康</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="../static/img/yj.jpg" th:href="@{/img/yj.jpg}">姚健</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="../static/img/hzh.gif" th:href="@{/img/hzh.gif}">郝志宏</a>
+                        <a class="item my-mobile-hide c-item my-font-bigsmall" href="../static/img/zy.png" th:href="@{/img/zy.png}">张源</a> </div>
+                </div>
+                <div class="right menu">
+                    <div class="ui dropdown item  my-mobile-hide c-item ">
+                        <div class="text">
+                            <img alt="" class="ui avatar image " src="../static/img/mytx.jpg" th:src="@{${session.user!=null?session.user.avatar:'/img/mytx.jpg'}}">
+                            <span th:text="${session.user!=null?session.user.nickname:'李泽庆'}">李泽庆</span>
+                        </div>
+                        <i class="icon dropdown"></i>
+                        <div class="menu">
+                            <a class="item" href="admin/blogManager.html" th:href="@{admin/index}">我的控制台</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 汉堡 -->
+        <span class="ui black button my-hanbao my-mobile-show" href="#" id="toggle-menu"><span class="" style="font-size: 30px;">🍔</span></span>
+    </nav>
+    <br>
+    <br>
+
+    <!-- 中间内容 -->
+    <div class="ui container">
+        <div class="ui stackable grid  mobile reversed">
+            <!-- 左边 -->
+            <div class="five wide column ">
+                <div class="top attached segment ui purple">
+                    <div class="ui purple header center aligned" style="font-size: 28px;">关于我</div>
+                </div>
+                <div class="ui attached segment blue">
+                    <p class="my-info-font">
+                        <span style="font-size: 26px;" th:text="${session.user!=null?session.user.nickname:'李泽庆'}">李泽庆</span> 一名在校大学生，喜欢编程，常爱折腾，正处于一条没有尽头的学习之路上，希望可以结识更多优秀的小伙伴。
+                    </p>
+                    <p class="my-info-font">Not For Lzq,But For Yourself!</p>
+                </div>
+                <div class="ui attached segment red">
+                    <div class="ui red label left pointing">编程</div>
+                    <div class="ui red label left pointing">算法</div>
+                    <div class="ui red label left pointing">观影</div>
+                    <div class="ui red label left pointing">养生</div>
+                </div>
+                <div class="ui attached segment yellow">
+                    <div class="ui yellow label my-padding-tb">Java</div>
+                    <div class="ui yellow label my-padding-tb">Mysql</div>
+                    <div class="ui yellow label my-padding-tb">JavaScript</div>
+                    <div class="ui yellow label my-padding-tb">Vue</div>
+                    <div class="ui yellow label my-padding-tb">Node</div>
+                    <div class="ui yellow label my-padding-tb">Linux</div>
+                    <div class="ui yellow label my-padding-tb">React</div>
+                    <div class="ui yellow label my-padding-tb">SSM</div>
+                    <div class="ui yellow label my-padding-tb">SSH</div>
+                    <div class="ui yellow label my-padding-tb">···</div>
+                </div>
+                <div class="ui segment bottom attached  green">
+                    <div class="ui circular icon button" data-content="it-lzq"><i class="icon github"></i></div>
+                    <div class="ui circular icon button" th:data-content="${session.user!=null?session.user.phone:'15034344690'}"><i class="icon weixin"></i></div>
+                    <div class="ui circular icon button" th:data-content="${session.user!=null?session.user.qq:'905866484'}"><i class="icon qq"></i></div>
+                    <div class="ui circular icon button" data-variation="basic" th:data-content="${session.user!=null?session.user.email:'lzq905866484@163.com'}"><i class="icon mail"></i></div>
+                </div>
+
+            </div>
+            <!-- 右边 -->
+            <div class="eleven wide column">
+                <img alt="" class="ui rounded image" src="../static/img/id-0.jpg" th:src="@{/img/id-0.jpg}">
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <footer class="ui inverted vertical segment my-padding-shuxian my-margin-top-small " th:replace="blog_fragment :: footer">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided grid stackable">
+                <div class="four wide  column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img class="ui rounded image" src="../static/img/wx.jpg" style="height: 110px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a class="item" href="">学习资讯(study info)</a>
+                        <a class="item" href="">关于如何高效学习</a>
+                        <a class="item" href="">保持本心</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">联系我</h4>
+                    <div class="ui inverted link list">
+                        <span class="item" href="">phone:15034344690</span>
+                        <span class="item" href="">QQ:905866484</span>
+                        <span class="item" href="">email:905866484@qq.com</span>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">NotForzq</h4>
+                    <div class="ui inverted link list">
+                        <span class="item">------------------------</span>
+                        <span class="item" href="#"> 学习不仅仅是为了自己！前方不会孤单！</span>
+                        <span class="item">------------------------</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="item my-opacity-font">Welcome to notonlyzq blog, since 2020</p>
+        </div>
+
+    </footer>
+    <script src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+    <!--    <script src="../static/js/jquery-2.1.0.min.js" th:src="@{/js/jquery-2.1.0.min.js}"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script>
+        $('#newblog-container').load( /*[[@{/footer/newblog}]]*/ "/footer/newblog");
+        $("#toggle-menu").click(function() {
+            $('.c-item').toggleClass('my-mobile-hide');
+        });
+        $('.ui.button.icon.circular')
+            .popup({
+
+            });
+        $('.ui.dropdown.item')
+            .dropdown({
+                on: 'hover'
+            });
+    </script>
+</body>
+
+</html>

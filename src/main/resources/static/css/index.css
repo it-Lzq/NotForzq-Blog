@@ -1,0 +1,122 @@
+body {
+    background: url("../img/bg.png");
+}
+
+.my-padding-tb {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+.my-padding-shuxian {
+    padding-top: 4em !important;
+    padding-bottom: 2em !important;
+}
+
+.my-margin-top-small {
+    margin-top: 20px !important;
+}
+
+.my-margin-top-ssmall {
+    margin: 5px !important;
+}
+
+.my-padded-lr {
+    padding-left: 4em;
+    padding-right: 4em;
+}
+
+
+/* container */
+
+.my-container {
+    max-width: 62em !important;
+    margin: 0 auto !important;
+}
+
+.my-container-con {
+    max-width: 75em !important;
+    margin: 0 auto !important;
+}
+
+/* text */
+
+.my-opacity-font {
+    opacity: 0.8 !important;
+}
+
+.my-font-small {
+    margin-top: 15px !important;
+    font-size: 10px !important;
+}
+
+.my-tag-font {
+    font-size: 8px !important;
+    margin-bottom: 5px !important;
+}
+
+.my-font-bigsmall {
+    font-size: 18px !important;
+}
+
+.my-type-font{
+    font-weight: bold !important;
+    font-size: 13px !important;
+}
+
+.my-info-font {
+    font-size: 18px;
+    font-family: '幼圆';
+    color: darkslateblue;
+}
+
+
+/* display */
+
+.my-inline-block {
+    display: inline-block !important;
+    font-size: 1.5em !important;
+}
+
+
+/* img */
+
+.my-tx {
+    width: 100px;
+    display: inline-block !important;
+}
+
+
+/* hanbao */
+
+.my-hanbao {
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    display: none !important;
+}
+
+
+/* 手机 */
+
+@media screen and (max-width:800px) {
+    .my-mobile-hide {
+        display: none !important;
+    }
+    .my-mobile-show {
+        display: inline-block !important;
+    }
+    .my-padded-lr {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+
+/* position */
+
+.my-position {
+    position: fixed !important;
+    z-index: 2 !important;
+    right: 0;
+    bottom: 150px;
+}

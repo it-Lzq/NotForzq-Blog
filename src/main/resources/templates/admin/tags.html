@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/user_fragment :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>NotForzq 标签管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet">
+    <link href="../../static/css/index.css" rel="stylesheet">
+    <canvas height="990" id="c_n9" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;" width="1920"></canvas>
+    <script defer src="https://files.cnblogs.com/files/jeavy/canvas-nest.min.js"></script>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav class="ui inverted segment attached my-padding-tb"  th:replace="admin/user_fragment :: menu">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item" th:href="@{}">Blog 控制台</h2>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="../index.html">💎首页</a>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="../blogClass.html">🎉分类</a>
+                <a class="item my-mobile-hide c-item my-font-bigsmall" href="../blogTag.html">👣标签</a>
+                <div class="right menu">
+                    <div class="ui dropdown item  my-mobile-hide c-item ">
+                        <div class="text">
+                            <img alt="" class="ui avatar image " src="../../static/img/mytx.jpg" th:src="${user.avatar}"> <span th:text="${user.nickname}">李</span>
+                        </div>
+                        <i class="icon dropdown"></i>
+                        <div class="menu">
+                            <a class="item" href="">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 汉堡 -->
+        <span class="ui black button my-hanbao my-mobile-show" href="#" id="toggle-menu"><span class="" style="font-size: 30px;">🍔</span></span>
+    </nav>
+    <div class="ui attached menu pointing" >
+        <div class=" ui container " >
+            <div class="right menu ">
+                <a class="item " href="blogManager.html"  th:href="@{/admin/blogs}">列表</a>
+                <a class="item  " href="blogRelease.html" th:href="@{/admin/blogRelease}">发布</a>
+            </div>
+
+        </div>
+
+    </div>
+    <br>
+    <br>
+
+    <!-- 中间内容 -->
+    <div class="my-container centered ">
+        <div class="ui container ">
+            <div class="ui stackable  ">
+                <div class="ui success mini message" th:unless="${#strings.isEmpty(message)}" >
+                <i class="close icon"></i>
+                <p class="header" th:text="${message}">操作成功</p>
+            </div>
+                <table class="ui  table unstackable celled">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>名称</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr th:each="tag,index :${ page.content}">
+                            <td th:text="${index.count}">1</td>
+                            <td class="my-font-bigsmall" th:text="${tag.name}">Java</td>
+                            <td>
+                                <a class="ui  green  button " href="" style="margin-bottom: 5px;" th:href="@{/admin/tag/{id}/input(id=${tag.id})}">编辑</a>
+                                <a class="ui red  button " href="" th:href="@{/admin/tag/{id}/delete(id=${tag.id})}">删除</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="mini" colspan="6">
+                                <div class="ui  pagination mini menu" th:if="${page.totalPages}>1">
+                                    <a class=" item"  href="#" th:href="@{/admin/tags(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                                    <a class=" item" href="#" th:href="@{/admin/tags(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
+                                </div>
+                                <a class="ui my-type-font right floated basic  button" href=""  th:href="@{/admin/tags/input}">新增</a>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <footer class="ui inverted vertical segment my-padding-shuxian my-margin-top-small " th:replace="admin/user_fragment :: footer">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided grid stackable">
+                <div class="four wide  column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img class="ui rounded image" src="../../static/img/wx.jpg" style="height: 110px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a class="item" href="">学习资讯(study info)</a>
+                        <a class="item" href="">关于如何高效学习</a>
+                        <a class="item" href="">保持本心</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">联系我</h4>
+                    <div class="ui inverted link list">
+                        <span class="item" href="">phone:15034344690</span>
+                        <span class="item" href="">QQ:905866484</span>
+                        <span class="item" href="">email:905866484@qq.com</span>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">NotForzq</h4>
+                    <div class="ui inverted link list">
+                        <span class="item">------------------------</span>
+                        <span class="item" href="#"> 学习不仅仅是为了自己！前方不会孤单！</span>
+                        <span class="item">------------------------</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="item my-opacity-font">Welcome to notonlyzq blog, since 2020</p>
+        </div>
+
+    </footer>
+    <script src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script>
+        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+        $("#toggle-menu").click(function() {
+            $('.c-item').toggleClass('my-mobile-hide');
+        });
+        $('.ui.dropdown')
+            .dropdown({
+                on: 'hover'
+            });
+        $('.message .close').on('click',function () {
+            $(this).closest('.message').transition('fade');
+        })
+    </script>
+</body>
+
+</html>

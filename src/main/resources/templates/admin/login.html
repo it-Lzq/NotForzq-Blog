@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="blog_fragment :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>NotForzq 控制台登录</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet">
+    <link href="../../static/css/index.css" rel="stylesheet">
+    <canvas height="990" id="c_n9" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;" width="1920"></canvas>
+    <script defer src="https://files.cnblogs.com/files/jeavy/canvas-nest.min.js"></script>
+</head>
+
+<body>
+<!-- 导航 -->
+<nav class="ui inverted segment attached my-padding-tb" th:replace="blog_fragment :: menu">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">NotForzq Blog</h2>
+            <a class="item my-mobile-hide c-item my-font-bigsmall"  href="../index.html">💎首页</a>
+            <a class="item my-mobile-hide c-item my-font-bigsmall" href="../blogClass.html">🎉分类</a>
+            <a class="item my-mobile-hide c-item my-font-bigsmall"  href="../blogTag.html">👣标签</a>
+            <a class="item my-mobile-hide c-item my-font-bigsmall"  href="../blogHome.html">🎐归档</a>
+            <a class="item my-mobile-hide c-item my-font-bigsmall" href="../blogMy.html">🤪关于我</a>
+
+        </div>
+    </div>
+    <!-- 汉堡 -->
+    <span class="ui black button my-hanbao my-mobile-show" href="#" id="toggle-menu"><span class="" style="font-size: 30px;">🍔</span></span>
+</nav>
+<br>
+<br><br><br><br><br>
+
+    <!-- 中间内容 -->
+    <div class="my-container centered ">
+        <div class="ui container " style="width: 50%">
+            <div class="ui middle aligned center aligned grid">
+                <div class="column">
+                    <h2 class="ui teal image header">
+                        <div class="content">
+                            后台管理登录
+                        </div>
+                    </h2>
+                    <form class="ui large form" method="post" th:action="@{/admin/login}">
+
+                        <div class="ui stacked segment">
+                            <br>
+                            <div class="field">
+                                <div class="ui left icon input">
+                                    <i class="user icon"></i>
+                                    <input name="username" placeholder="Username" type="text">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui left icon input">
+                                    <i class="lock icon"></i>
+                                    <input name="password" placeholder="Password" type="password">
+                                </div>
+                            </div>
+                            <button class="ui fluid large teal submit button">Login</button>
+
+                        </div>
+
+                            <div class="ui error message mini"></div>
+                            <div class="ui negative mini message" th:text="${message}" th:unless="${#strings.isEmpty(message)}">
+                            </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<br><br><br><br><br>
+
+    <!-- 底部 -->
+    <footer class="ui inverted vertical segment my-padding-shuxian my-margin-top-small "  th:replace="blog_fragment :: footer">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided grid stackable">
+                <div class="four wide  column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img class="ui rounded image" src="../../static/img/wx.jpg" style="height: 110px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a class="item" href="">学习资讯(study info)</a>
+                        <a class="item" href="">关于如何高效学习</a>
+                        <a class="item" href="">保持本心</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">联系我</h4>
+                    <div class="ui inverted link list">
+                        <span class="item" href="">phone:15034344690</span>
+                        <span class="item" href="">QQ:905866484</span>
+                        <span class="item" href="">email:905866484@qq.com</span>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header my-opacity-font">NotForzq</h4>
+                    <div class="ui inverted link list">
+                        <span class="item">------------------------</span>
+                        <span class="item" href="#"> 学习不仅仅是为了自己！前方不会孤单！</span>
+                        <span class="item">------------------------</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="item my-opacity-font">Welcome to notonlyzq blog, since 2020</p>
+        </div>
+
+    </footer>
+<script src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script>
+        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+        $("#toggle-menu").click(function() {
+            $('.c-item').toggleClass('my-mobile-hide');
+        });
+        $('.ui.dropdown')
+            .dropdown({
+                on: 'hover'
+            });
+
+        $('.ui.form').form({
+            fields: {
+                username: {
+                    indentifier: 'username',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '请输入用户名'
+                    }]
+                },
+                password: {
+                    indentifier: 'password',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '请输入密码'
+                    }]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
